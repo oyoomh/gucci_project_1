@@ -1,0 +1,707 @@
+@font-face {
+	font-family: Gucci Sans Pro, Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic,
+		sans-serif;
+	word-break: keep-all;
+}
+
+html > body {
+	font-family: "Gucci Sans Pro", Helvetica, Arial, sans-serif;
+	overflow-x: hidden;
+}
+
+html.pc-side-bar-actived,
+html.pc-side-bar-actived > body {
+	overflow: hidden;
+}
+html.mobile-side-bar-actived,
+html.mobile-side-bar-actived > body {
+	overflow: hidden;
+}
+
+/* 미디어쿼리 */
+
+/* 너비가 640px 이하 */
+@media (width <= 640px){
+	.pc-top-bar, .pc-section-1, .pc-banner-box-type, .pc-swiper, .pc-banner-box-type-3, .pc-banner-box-type-4, .pc-bottom-bar, .pc-side-bar {
+		display: none;
+	}
+}
+/* 너비가 640px 이상 */
+@media (width >= 640px){
+	.mobile-top-bar, .mobile-section-1, .mobile-banner-box-type, .mobile-swiper, .mobile-banner-box-type-3, .mobile-banner-box-type-4, .mobile-bottom-bar, .mobile-side-bar {
+		display: none;
+	}
+}
+
+/* 라이브러리 */
+
+.con-min-width {
+	min-width: 1313px;
+}
+
+.con {
+	max-width: 1313px;
+}
+.mobile-con {
+	max-width: 640px;
+	padding: 0 10px;
+}
+
+/* pc 탑바 구현 시작 */
+
+.pc-top-bar, .mobile-top-bar {
+	z-index: 10;
+}
+
+.service > .service-text > a > span {
+	display: block;
+	font-size: 0.75rem;
+	font-weight: 500;
+	letter-spacing: -0.03em;
+	line-height: 1rem;
+	position: relative;
+	margin-left: 5px;
+}
+
+
+/* 탑바 밑줄 애니메이션 시작 */
+
+.service > .service-text > a > span::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: 100%;
+	height: 0.5px;
+	background-color: black;
+	transition: width 0.2s;
+}
+.service > .service-text:hover > a > span::after {
+	width: 0;
+}
+/* 탑바 밑줄 애니메이션 끝 */
+
+.widget-wrap > nav > ul > li > span{
+	display: block;
+	width: 24px;
+	height: 24px;
+}
+/* pc 탑바 구현 끝 */
+/* mobile 탑바 구현 시작 */
+
+.mobile-top-bar {
+	min-width: 320px;
+	z-index: 100;
+}
+
+.mobile-top-bar .widget-wrap > nav > ul > li > span {
+	width: 14px;
+}
+
+/* mobile 탑바 구현 끝 */
+/* pc 사이드바 구현 시작 */
+
+.side-bar {
+	transition: opacity 1s, visibility 1s;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.side-bar.active {
+	opacity: 1;
+	visibility: visible;
+	z-index: 100;
+}
+
+
+.side-bar__content {
+	transform: translateX(100%);
+	transition: transform 0.5s;
+	min-width: 480px;
+}
+
+.side-bar.active .side-bar__content {
+	transform: translateX(0);
+}
+
+.side-bar__btn-close {
+	background-color: black;
+	border-radius: 30px;
+	transition: scale 0.3s;
+}
+
+.side-bar__btn-close:hover {
+	scale: 0.9;
+}
+
+.side-bar__btn-close > div {
+	top: 50%;
+	left: 25%;
+	height: 0.5px;
+	width: 50%;
+	background-color: white;
+	transform: rotate(-45deg);
+}
+
+.side-bar__btn-close > div:last-child {
+	transform: rotate(45deg);
+}
+
+/* pc 사이드바 메뉴 구현 시작 */
+.pc-menu-box-1 li:first-child > a,
+.mobile-menu-box-1 li:first-child > a{
+	font-family: "Malgun Gothic";
+}
+사이드바 공통 밑줄 애니메이션 시작 */
+.menu-box-1__bottom-list > li {
+	display: flex;
+}
+.menu-box-1__list a > span {
+	display: block;
+	font-size: 1rem;
+	letter-spacing: -0.03em;
+	line-height: 1rem;
+	position: relative;
+}
+.menu-box-1__list a > span::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: 100%;
+	height: 0.5px;
+	background-color: black;
+	transition: width 0.2s;
+}
+.menu-box-1__list a:hover > span::after {
+	width: 0;
+}
+.menu-box-1__bottom-list a {
+	margin-top: 15px
+}
+/* 사이드바 공통 밑줄 애니메이션 끝 */
+.menu-box-1 ul {
+	overflow-x: hidden;
+	padding-left: 30px;
+}
+
+.menu-box-1 > ul ul {
+	transform: translatex(100%);
+	visibility: hidden;
+	position: absolute;
+	overflow-x: hidden;
+	transition: transform 0s, visibility 0s cubic-bezier(0.5, 0, 0, 1) 0s;
+	flex-grow: 1;
+}
+
+.menu-box-1 ul > li.active > ul {
+	width: 100%;
+	height: 700px;
+	top: 0;
+	left: 0;
+	visibility: visible;
+	transform: translatex(0);
+	background-color: white;
+}
+
+/* n차 텍스트 */
+.menu-box-1 ul > li > a {
+	display: block;
+	padding: 10px;
+	font-size: 1.2rem;
+	font-weight: 500;
+	letter-spacing: -0.04em;
+	line-height: 2rem;
+}
+/* 2차 메뉴 텍스트 */
+.menu-box-1 > ul ul > li > a {
+font-size: 1rem;
+	font-weight: 500;
+	letter-spacing: -0.03em;
+	line-height: 1rem;
+	margin: 10px 0;
+}
+.menu-box-1 > ul ul ul > li > a {
+	margin: 20px 0;
+}
+
+.side-bar__body > .menu-box-1 .prev-menu-page__text {
+	font-weight: 700;
+	font-size: 0.7rem;
+	position: relative;
+}
+
+.side-bar__body > .menu-box-1 .prev-menu-page__text::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: 100%;
+	height: 0.5px;
+	background-color: black;
+	transition: width 0.2s;
+}
+.prev-menu-page:hover .prev-menu-page__text::after {
+	width: 0;
+}
+
+.side-bar__body > .menu-box-1 .next-arrow {
+	transform: translatex(-20%);
+	opacity: 0;
+	transition: transform 0.5s, opacity 0.5s;
+}
+
+.side-bar__body > .menu-box-1 ul > li:hover > .next-arrow {
+	transform: translatex(0);
+	opacity: 1;
+}
+
+/* pc 사이드바 메뉴 구현 끝 */
+
+/* pc 사이드바 구현 끝 */
+/* 모바일 사이드바 구현 시작 */
+
+.mobile-side-bar__content, .mobile-side-bar__body {
+	max-width: 400px;
+	min-width: 320px;
+	overflow-x: hidden;
+}
+.mobile-menu-box-1 > ul {
+	overflow-x: hidden;
+}
+
+/* 메인 이미지 구현 시작 */
+.pc-section-1 > .section-con > .main-img-box{
+	overflow-x: hidden;
+}
+
+.pc-section-1 > .section-con > .main-img-box > a > img {
+	display: block;
+	max-width: 800px;
+	max-height: 1067px;
+}
+.mobile-section-1 > .section-con {
+	min-width: 320px;
+	padding: 0 10px;
+}
+
+/* 메인 이미지 구현 끝 */
+/* 배너 구현 시작 */
+
+/* 공통 버튼 구현 시작 */
+
+.banner-box-type .collection-btn > a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	color: white;
+	font-size: 0.7rem;
+	width: 134px;
+	height: 48px;
+	border-radius: 2px;
+	transform: translatey(100%);
+	opacity: 0%;
+	transition: transform 1s, opacity 1s, scale .3s;
+}
+
+.banner-box-type .collection-btn > a.active {
+	opacity: 1;
+	transform: translatey(0);
+}
+
+.banner-box-type .collection-btn > a:hover {
+	scale: 0.98;
+}
+
+/* 공통 메인 텍스트 구현 시작 */
+
+.banner-box-type .cont-box .main-text {
+	transition: transform 1s, opacity 1s;
+	transform: translateY(100%);
+	opacity: 0;
+}
+
+.banner-box-type .cont-box .main-text.active{
+	opacity: 1;
+	transform: translatey(0%);
+}
+/* 공통 메인 텍스트 구현 끝 */
+/* 모바일 배너1 구현 시작 */
+
+.mobile-banner-box-type .banner-box-type .cont-box .main-text {
+	font-size: 1.75rem;
+}
+
+/* 모바일 배너1 구현 끝 */
+/* 배너2 구현 시작 */
+.pc-swiper .swiper-slide > .swiper-menu-name {
+	top: 90%;
+	font-size: .9rem;
+	letter-spacing: 0.03em;
+	line-height: 1.5rem;
+	font-weight: bold;
+}
+.pc-swiper .slide__list {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+.pc-swiper .slide__list > .swipeslide__slide img {
+	min-width: 300px;
+	min-height: 300px;
+	padding: 50px;
+}
+.pc-swiper .slide__list .swiper-slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 500px;
+	max-height: 500px;
+	background-color: rgb(231, 231, 231);
+}
+.pc-swiper .slide__list .swiper-slide:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(231, 231, 231);
+	opacity: 0;
+	z-index: -1;
+	transition: all 0.3s;
+}
+.pc-swiper .slide__list .swiper-slide.off:before {
+	opacity: 0.4;
+	z-index: 10;
+}
+.banner-box-type-2 .cont-box > .go-collection {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+/* 스와이퍼 버튼 구현 시작 */
+.banner-box-type-2 > div {
+	position: relative;
+}
+.pc-swiper .slide__list__btn-box {
+	position: absolute;
+	min-width: 660px;
+	min-height: 100%;
+	left: 50%;
+	top: 60%;
+	z-index: 50;
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.pc-swiper .slide__list__btn-box > .btn-box__arrow {
+	display: flex;
+	width: 100%;
+}
+.pc-swiper .slide__list__btn-box > .btn-box__arrow > .slide__list__btn-prev {
+	
+}
+.pc-swiper .slide__list__btn-box > .btn-box__arrow > .slide__list__btn-next {
+	position: absolute;
+	right: 0;
+}
+.pc-swiper .slide__list__btn-box > .btn-box__arrow > .slide__list__btn-prev .arrow-left-leg {
+	transition: transform 0.3s;
+}
+
+.pc-swiper .slide__list__btn-box > .btn-box__arrow > .slide__list__btn-next .arrow-right-leg {
+	transform-origin: right center;
+	transition: transform 0.3s;
+}
+
+.slide__list__btn-box
+	> .btn-box__arrow
+	> .slide__list__btn-prev:hover
+	.arrow-left-leg,
+.slide__list__btn-box
+	> .btn-box__arrow
+	> .slide__list__btn-next:hover
+	.arrow-right-leg {
+	transform: scalex(0.6);
+}
+/* 스와이퍼 버튼 구현 끝*/
+
+/* mobile 스와이퍼 구현 시작  */
+.mobile-swiper .cont-box a {
+	font-size: 1.1rem;
+}
+.mobile-swiper .swiper-slide > .swiper-menu-name {
+	top: 90%;
+	font-size: .9rem;
+	letter-spacing: 0.03em;
+	line-height: 1.5rem;
+	font-weight: bold;
+}
+.mobile-swiper .slide__list {
+	max-width: 640px;
+	overflow-x: hidden;
+}
+
+.mobile-swiper .slide__list > .swipeslide__slide img {
+	min-width: 250px;
+	min-height: 250px;
+	padding: 50px;
+}
+.mobile-swiper .slide__list .swiper-slide {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 400px;
+	max-height: 400px;
+	background-color: rgb(231, 231, 231);
+}
+.mobile-swiper .slide__list .swiper-slide:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(231, 231, 231);
+	opacity: 0;
+	z-index: -1;
+	transition: all 0.3s;
+}
+.mobile-swiper .slide__list .swiper-slide.off:before {
+	opacity: 0.4;
+	z-index: 10;
+}
+
+/* 배너 2 구현 끝 */
+/* 공통 밑줄 애니메이션 구현 시작 */
+.banner-box-type .cont-box .animation a > span::before,
+.banner-box-type .cont-box .animation a > span::after {
+	content: "";
+	position: absolute;
+	top: 90%;
+	left: 0;
+	width: 100%;
+	height: 0.5px;
+	background-color: black;
+	transition: transform 0.2s;
+}
+
+.banner-box-type .cont-box .animation a > span::before {
+	transform: translatex(-100%);
+}
+
+.banner-box-type .cont-box .animation a:hover > span::before {
+	transform: translatex(0%);
+	z-index: 1;
+	background-color: white;
+}
+.banner-box-type .cont-box > .go-collection {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+
+/* 공통 밑줄 애니메이션 구현 끝 */
+/* 배너3 구현 시작 */
+
+.banner-box-type-3 .cont-box-3 {
+	position: relative;
+	max-width: 100%; 
+}
+
+.banner-box-type .collection-btn-3 > a {
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+
+.banner-box-type-3 .cont-box-3 > .cont-box__text {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 40%;
+	left: 0;
+}
+/* 모바일 배너3 구현 시작 */
+.mobile-banner-box-type-3 {
+	min-width: 320px;
+}
+
+.mobile-banner-box-type-3 > .banner-box-type-3 .cont-box-3 {
+	margin-top: 100px;
+}
+.mobile-banner-box-type-3 .banner-box-type-3 .cont-box-3 > .cont-box__text {
+	top: 40%;
+}
+
+.mobile-banner-box-type-3 .cont-box__text  > .main-text {
+font-size: 1.75rem;
+}
+/* 모바일 배너3 구현 끝 */
+/* 배너3 구현 끝 */
+/* 배너4구현 시작 */
+.pc-banner-box-type-4 .banner-box-type > .con > div:first-child {
+	width: 55%;			
+}
+
+.pc-banner-box-type-4 .banner-box-type > .con > div:last-child {
+	width: 45%;			
+}
+.pc-banner-box-type-4 .banner-box-type > .con > .img-box {
+	display: block;
+	margin-left: 10px;
+}
+
+.pc-banner-box-type-4 .banner-box-type > .con > .img-box > img{
+	display: block;
+	max-height: 740px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.pc-banner-box-type-4 .banner-box-type > .con > .cont-box {
+	opacity: 0;
+	margin-top: auto;
+	margin-bottom: auto;
+	min-width: 320px;
+	transition: opacity 1s;
+}
+.pc-banner-box-type-4 .banner-box-type > .con > .cont-box.active{
+	opacity: 1;
+}
+
+.banner-box-type-4 .img-box {
+	z-index: -5;
+}
+
+.banner-box-type .cont-box > .veiw {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+
+
+/* 배너4 구현 끝 */
+/* 모바일 배너4 구현 시작 */
+.mobile-banner-box-type-4 {
+	min-width: 320px;
+}
+.mobile-banner-box-type-4 .banner-box-type .cont-box {
+	min-width: 320px;
+	opacity: 0;
+	transition: opacity 1s;
+}
+.mobile-banner-box-type-4 .banner-box-type .cont-box.active{
+	opacity: 1;
+}
+
+/* 모바일 배너4 구현 끝 */
+
+/* 배너 구현 끝 */
+/* 하단바 리스트1 구현 시작 */
+
+.bottom-bar > .con > .content-first__box-1,
+.bottom-bar > .con > .content-first__box-2 {
+	flex: 1 1 0;
+}
+
+.bottom-bar > .con > .content-first__box-3 {
+	flex: 2 1 0;
+}
+
+.bottom-bar > .con > .content-first__box-1 > div {
+	top: 0;
+	left: 0;
+}
+
+.bottom-bar > .con > .content-first__box-1 > div:last-child {
+	top: 50%;
+}
+.bottom-bar__content-first, .bottom-bar__content-second, .bottom-bar__content-third{
+	padding: 0 10px;
+}
+/* 하단바 텍스트 구현 시작*/
+
+.bottom-bar nav > ul > li > a {
+	display: block;
+	padding: 10px 0;
+	font-size: 0.75rem;
+	font-weight: 500;
+	letter-spacing: -0.03em;
+	line-height: 1rem;
+}
+
+.bottom-bar__box-3 .nation > ul > li > a {
+	font-weight: 700;
+}
+
+
+.bottom-bar nav > ul > li > a > span {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+
+.bottom-bar nav > ul > li > a > span::before,
+.bottom-bar nav > ul > li > a > span::after{
+	content: "";
+	position: absolute;
+	top: 90%;
+	left: 0;
+	width: 100%;
+	height: 0.5px;
+	background-color: white;
+	transition: transform 0.2s;
+}
+
+.bottom-bar nav > ul > li > a > span::before{
+	transform: translatex(-100%);
+}
+
+.bottom-bar nav > ul > li > a:hover > span::before {
+	transform: translatex(0%);
+	z-index: 1;
+	background-color: black;
+}
+
+/* 하단바 텍스트 구현 끝*/
+
+/* 서치 박스 구현 시작 */
+.content-first__box-3 .search-box-border {
+	background-color: #afafaf;
+	height: 0.3px;
+}
+
+.content-first__box-3 .search-box > .search-box__arrow {
+	margin-left: auto;
+}
+
+/* 서치 박스 구현 끝 */
+
+
+/* 하단바 리스트1 구현 끝 */
+
+/* 하단바 리스트2 구현 시작 */
+.content-second__box-1 .second__img {
+	opacity: 0.7;
+	transition: opacity .5s;
+}
+
+.content-second__box-1 .second__img:hover {
+	opacity: 1;
+}
+
+.content-second__box-2 .content-second__text > p {
+	display: block;
+	padding: 4px 0;
+  font-size: .7rem;
+}
+/* 하단바 리스트2 구현 시작 */
+/* 모바일 하단바 구현 시작 */
+.mobile-bottom-bar {
+	min-width: 320px;
+}
+/* 모바일 하단바 구현 끝 */
+
+
